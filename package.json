@@ -1,0 +1,20 @@
+{
+  "name": "pattern-navigator",
+  "version": "0.1.0",
+  "description": "Let's match text patterns and navigate to the landing page.",
+  "private": true,
+  "scripts": {
+    "watch": "webpack watch",
+    "build": "webpack",
+    "prod": "webpack --mode production"
+  },
+  "devDependencies": {
+    "webpack": "^5.31.0",
+    "webpack-cli": "^4.6.0"
+  },
+  "author": "AntonPronkin",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AntonPronkin/pattern-navigator.git"
+  }
+}
