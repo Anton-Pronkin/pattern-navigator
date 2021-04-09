@@ -1,15 +1,35 @@
 <template>
-  <div class="options">Options page</div>
+  <div class="options">
+    <option-pattern-list :patterns="patterns"></option-pattern-list>
+  </div>
 </template>
 
 <script>
+import OptionPatternList from "./OptionPatternList.vue";
+
 export default {
   name: "Options",
+  props: {
+    patterns: {
+      type: Array,
+      require: true,
+    },
+  },
+  components: {
+    OptionPatternList,
+  },
+  mounted() {
+    console.log(this.patterns);
+  },
 };
 </script>
 
 <style>
+body {
+  margin: 0;
+}
+
 .options {
-  text-align: center;
+  padding: 4px;
 }
 </style>
