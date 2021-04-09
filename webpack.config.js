@@ -1,10 +1,10 @@
-const path = require('path');
+const path = require("path");
 const { VueLoaderPlugin } = require("vue-loader");
 
 module.exports = {
     entry: {
-        content: './src/scripts/content.js',
-        background: './src/scripts/background.js'
+        content: "./src/scripts/content.js",
+        background: "./src/scripts/background.js",
         options: "./src/scripts/options.js"
     },
     mode: "development",
