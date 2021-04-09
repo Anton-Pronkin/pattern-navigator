@@ -3,9 +3,9 @@ const { VueLoaderPlugin } = require("vue-loader");
 
 module.exports = {
     entry: {
-        content: "./src/scripts/content.js",
-        background: "./src/scripts/background.js",
-        options: "./src/scripts/options.js"
+        content: "./src/content.js",
+        background: "./src/background.js",
+        options: "./src/options.js"
     },
     mode: "development",
     devtool: "source-map",

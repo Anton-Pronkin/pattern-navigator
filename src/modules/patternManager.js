@@ -1,7 +1,7 @@
 export default class PatternManager {
     findFirstMatch(text) {
         // Use test pattern
-        const pattern = /TEST-\d{1,5}/;
+        const pattern = /PROJECT-\d{1,5}/;
     
         const match = text?.match(pattern)?.[0];
         if (!match) {
@@ -10,7 +10,7 @@ export default class PatternManager {
 
         return {
             pattern: match,
-            title: `Open ${match} in a new tab.`,
+            title: `Open ${match} in your issue tracker`,
             url: `test-url/${match}`
         }
     }
