@@ -22,6 +22,7 @@
     "url": "git+https://github.com/AntonPronkin/pattern-navigator.git"
   },
   "dependencies": {
+    "chrome-extension-async": "^3.4.1",
     "vue": "^2.6.12"
   },
   "prettier": {

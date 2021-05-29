@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "Let's match text patterns and navigate to the landing page.",
   "manifest_version": 2,
-  "permissions": ["contextMenus"], 
+  "permissions": ["contextMenus", "storage"], 
   "background": {
     "scripts": ["scripts/background.min.js"]
   },

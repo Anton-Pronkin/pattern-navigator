@@ -1,4 +1,4 @@
-export default class ContextMenu {
+export default class ChromeContextMenu {
     constructor() {
         this.url = null;
         this.contextMenuId = "contextMenuId";

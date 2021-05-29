@@ -10,9 +10,9 @@ import OptionPatternList from "./OptionPatternList.vue";
 export default {
   name: "Options",
   props: {
-    patterns: {
-      type: Array,
-      require: true,
+    storage: {
+      type: Object,
+      required: true,
     },
   },
   components: {
