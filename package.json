@@ -26,6 +26,6 @@
     "vue": "^2.6.12"
   },
   "prettier": {
-    "printWidth": 120
+    "printWidth": 140
   }
 }

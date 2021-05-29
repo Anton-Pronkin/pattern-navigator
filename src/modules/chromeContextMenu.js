@@ -39,8 +39,8 @@ export default class ChromeContextMenu {
         // There are some system pages that did not include content.js and 
         // we have to hide menu item manually, otherwise users will see 
         // menu item with incorrect configuration.
-        
-        const delay = 500; 
+
+        const delay = 500;
         setTimeout(() => this.hide(), delay);
     }
 }

@@ -1,13 +1,13 @@
 <template>
-  <div class="option-pattern-field">
-    <span class="option-pattern-field__name">{{ name }}</span>
-    <span class="option-pattern-field__value">{{ value }}</span>
+  <div class="pattern-field">
+    <span class="pattern-field__name">{{ name }}</span>
+    <span class="pattern-field__value">{{ value }}</span>
   </div>
 </template>
 
 <script>
 export default {
-  name: "OptionPatternField",
+  name: "PatternField",
   props: {
     name: {
       type: String,
@@ -22,15 +22,15 @@ export default {
 </script>
 
 <style>
-.option-pattern-field {
+.pattern-field {
   font-size: 14px;
 }
 
-.option-pattern-field__name {
+.pattern-field__name {
   font-weight: bold;
 }
 
-.option-pattern-field__name:after {
+.pattern-field__name:after {
   content: ":";
 }
 </style>
