@@ -11,7 +11,7 @@ function processRightClick(event) {
         type: MessageTypes.contextMenu,
         data: {
             selection: document.getSelection().toString(),
-            content: event.target.innerText
+            content: event.target.innerText || event.target.value
         }
     });
 }
