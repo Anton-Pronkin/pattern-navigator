@@ -8,29 +8,29 @@ export default class ContextMenuManager {
     }
 
     listen() {
-        this.chromeManager.addMessageListener(MessageTypes.contextMenu, this.processContextMenu.bind(this));
+        this.chromeManager.addMessageListener(MessageTypes.contextMenuPreparing, this.prepareContextMenu.bind(this));
+        this.chromeManager.addMessageListener(MessageTypes.contextMenuOpened, this.hideContextMenu.bind(this));
         this.chromeManager.addContextMenuListener(this.processContextMenuItem.bind(this));
     }
 
-    async processContextMenu({ selection, content }) {
-        const targetText = selection.length ? selection : content;
+    async prepareContextMenu({ selection, content }) {
+        this.contextMenu.removeItems();
 
-        const match = await this.patternManager.findFirstMatch(targetText);
-        if (match) {
-            this.contextMenu.show({
-                title: match.title,
-                url: match.url
-            });
-        }
-        else {
-            this.contextMenu.hide();
+        const targetText = selection.length ? selection : content;
+        const matches = await this.patternManager.findMatches(targetText);
+        for (const match of matches) {
+            this.contextMenu.createItem(match.title, match.url);
         }
     }
 
-    processContextMenuItem() {
-        this.contextMenu.hide();
-
-        const url = this.contextMenu.getUrl();
+    processContextMenuItem({menuItemId}) {
+        const url = this.contextMenu.getUrl(+menuItemId);
         this.chromeManager.createTab(url);
+
+        this.contextMenu.removeItems();
+    }
+
+    hideContextMenu() {
+        this.contextMenu.hideItems();
     }
 }

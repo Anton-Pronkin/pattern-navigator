@@ -6,12 +6,23 @@ document.addEventListener("mousedown", event => {
     }
 });
 
+document.addEventListener("contextmenu", () => {
+    processContextMenu();
+});
+
 function processRightClick(event) {
     chrome.runtime.sendMessage({
-        type: MessageTypes.contextMenu,
+        type: MessageTypes.contextMenuPreparing,
         data: {
             selection: document.getSelection().toString(),
             content: event.target.innerText || event.target.value
         }
     });
 }
+
+function processContextMenu() {
+    chrome.runtime.sendMessage({
+        type: MessageTypes.contextMenuOpened,
+    });
+}
+

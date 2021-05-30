@@ -1,25 +1,28 @@
 export default class ContextMenu {
     constructor(chromeManager) {
-        this.url = null;
-        this.contextMenuId = "contextMenuId";
         this.chromeManager = chromeManager;
-        this.initialize();
+        this.items = [];
     }
 
-    initialize() {
-        this.chromeManager.createHiddenContextMenu(this.contextMenuId, ["all"]);
+    getUrl(id) {
+        return this.items[id].url;
     }
 
-    getUrl() {
-        return this.url;
+    createItem(title, url) {
+        const contextMenuItemId = this.items.length.toString();
+
+        this.items.push({ url });
+        this.chromeManager.createGlobalContextMenuItem(contextMenuItemId, title);
     }
 
-    show({ title, url }) {
-        this.url = url;
-        this.chromeManager.showContextMenu(this.contextMenuId, title);
+    removeItems() {
+        this.items = [];
+        this.chromeManager.removeContextMenuItems();
     }
 
-    hide() {
-        this.chromeManager.hideContextMenu(this.contextMenuId);
+    hideItems() {
+        for (let id = 0; id < this.items.length; id++) {
+            this.chromeManager.hideContextMenuItem(id.toString());
+        }
     }
 }

@@ -1,5 +1,6 @@
 const MessageTypes = {
-    contextMenu: "contextMenu"
+    contextMenuPreparing: "contextMenuPreparing",
+    contextMenuOpened: "contextMenuOpened"
 };
 
 export default MessageTypes;

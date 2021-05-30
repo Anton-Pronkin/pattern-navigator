@@ -12,22 +12,22 @@ export default class PatternManager {
         }
     }
 
-    async findFirstMatch(text) {
+    async findMatches(text) {
         const patterns = await this.patternStorage.getPatterns();
 
+        const result = [];
         for (const pattern of patterns) {
-            const match = text?.match(pattern.regexp);
-            if (!match || !match.length) {
-                return null;
+            const matches = text?.matchAll(pattern.regexp);
+            
+            for (const match of matches) {
+                const title = this.resolveRegExp(match, pattern.title);
+                const url = this.resolveRegExp(match, pattern.url);
+
+                result.push({ title, url });
             }
-
-            const title = this.resolveRegExp(match, pattern.title);
-            const url = this.resolveRegExp(match, pattern.url);
-
-            return { title, url };
         }
 
-        return null;
+        return result;
     }
 
     resolveRegExp(match, text) {
