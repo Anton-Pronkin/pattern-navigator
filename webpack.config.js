@@ -8,7 +8,7 @@ module.exports = {
         options: "./src/options.js"
     },
     mode: "development",
-    devtool: "source-map",
+    devtool: "inline-source-map",
     module: {
         rules: [{
             test: /\.vue$/,
