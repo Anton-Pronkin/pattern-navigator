@@ -1,8 +1,11 @@
 export default class PatternStorage {
     constructor(storage) {
         this.storage = storage;
-        this.cache = new Map();
         this.key = "patterns";
+        this.cache = {
+            patterns: new Map(),
+            expirationTime: Date.now()
+        }
     }
 
     async getPatterns() {
@@ -41,18 +44,26 @@ export default class PatternStorage {
     }
 
     async get(key, defaultValue) {
-        if (this.cache.has(key)) {
-            return this.cache.get(key);
+        if (this.cache.expirationTime > new Date() && this.cache.patterns.has(key)) {
+            return this.cache.patterns.get(key);
         }
 
         const value = await this.storage.getValue(key, defaultValue);
-        this.cache.set(key, value);
+        this.setCache(key, value);
 
         return value;
     }
 
     async set(key, value) {
         await this.storage.setValue(key, value);
-        this.cache.set(key, value);
+        this.setCache(key, value);
+    }
+
+    setCache(key, value) {
+        this.cache.patterns.set(key, value);
+
+        const date = new Date();
+        date.setSeconds(date.getSeconds() + 5);
+        this.cache.expirationTime = date;
     }
 }
