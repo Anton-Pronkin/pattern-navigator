@@ -7,8 +7,6 @@ module.exports = {
         background: "./src/background.js",
         options: "./src/options.js"
     },
-    mode: "development",
-    devtool: "inline-source-map",
     module: {
         rules: [{
             test: /\.vue$/,
@@ -22,9 +20,9 @@ module.exports = {
     },
     output: {
         filename: '[name].min.js',
-        path: path.resolve(__dirname, 'app/scripts'),
+        path: path.resolve(__dirname, '../app/scripts'),
     },
     plugins: [
-      new VueLoaderPlugin()
+        new VueLoaderPlugin()
     ]
 };
