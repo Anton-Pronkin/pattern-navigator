@@ -1,11 +1,12 @@
 export default class PatternStorage {
     constructor(storage) {
         this.storage = storage;
+        this.cache = new Map();
         this.key = "patterns";
     }
 
     async getPatterns() {
-        return await this.storage.getValue(this.key, []);
+        return await this.get(this.key, []);
     }
 
     async getPattern(id) {
@@ -16,7 +17,7 @@ export default class PatternStorage {
     async removePattern(id) {
         const patterns = await this.getPatterns();
         const newPatterns = patterns.filter(pattern => pattern.id != id);
-        await this.storage.setValue(this.key, newPatterns);
+        await this.set(this.key, newPatterns);
 
         return await this.getPatterns();
     }
@@ -35,7 +36,23 @@ export default class PatternStorage {
             patterns.push(pattern);
         }
 
-        await this.storage.setValue(this.key, patterns);
+        await this.set(this.key, patterns);
         return await this.getPatterns();
+    }
+
+    async get(key, defaultValue) {
+        if (this.cache.has(key)) {
+            return this.cache.get(key);
+        }
+
+        const value = await this.storage.getValue(key, defaultValue);
+        this.cache.set(key, value);
+
+        return value;
+    }
+
+    async set(key, value) {
+        await this.storage.setValue(key, value);
+        this.cache.set(key, value);
     }
 }

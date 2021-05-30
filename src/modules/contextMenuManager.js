@@ -12,10 +12,10 @@ export default class ContextMenuManager {
         this.chromeManager.addContextMenuListener(this.processContextMenuItem.bind(this));
     }
 
-    processContextMenu({ selection, content }) {
+    async processContextMenu({ selection, content }) {
         const targetText = selection.length ? selection : content;
 
-        const match = this.patternManager.findFirstMatch(targetText);
+        const match = await this.patternManager.findFirstMatch(targetText);
         if (match) {
             this.contextMenu.show({
                 title: match.title,
