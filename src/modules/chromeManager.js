@@ -1,4 +1,11 @@
 export default class ChromeManager {
+    constructor() {
+        this.contextMenuOptions = {
+            contexts: [chrome.contextMenus.ContextType.ALL],
+            documentUrlPatterns: ["http://*/*", "https://*/*"]
+        };
+    }
+
     createTab(url) {
         chrome.tabs.create({ url });
     }
@@ -21,19 +28,14 @@ export default class ChromeManager {
         chrome.contextMenus.create({
             id,
             title,
-            contexts: [chrome.contextMenus.ContextType.ALL],
-            type: type || chrome.contextMenus.ItemType.NORMAL
+            contexts: this.contextMenuOptions.contexts,
+            type: type || chrome.contextMenus.ItemType.NORMAL,
+            documentUrlPatterns: this.contextMenuOptions.documentUrlPatterns,
         });
     }
 
     createContextMenuSeparator() {
         this.createContextMenuItem(null, null, chrome.contextMenus.ItemType.SEPARATOR);
-    }
-
-    hideContextMenuItem(id) {
-        chrome.contextMenus.update(id, {
-            visible: false
-        });
     }
 
     removeContextMenuItems() {

@@ -9,8 +9,7 @@ export default class ContextMenuManager {
     }
 
     listen() {
-        this.chromeManager.addMessageListener(MessageTypes.contextMenuPreparing, this.prepareContextMenu.bind(this));
-        this.chromeManager.addMessageListener(MessageTypes.contextMenuOpened, this.hideContextMenu.bind(this));
+        this.chromeManager.addMessageListener(MessageTypes.contextMenu, this.prepareContextMenu.bind(this));
         this.chromeManager.addContextMenuListener(this.contextMenuItemClick.bind(this));
     }
 
@@ -65,9 +64,5 @@ export default class ContextMenuManager {
         for (const menuItem of menuItems) {
             this.processRegularContextMenuItem(menuItem);
         }
-    }
-
-    hideContextMenu() {
-        this.contextMenu.hideItems();
     }
 }

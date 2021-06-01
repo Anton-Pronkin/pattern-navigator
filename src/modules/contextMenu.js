@@ -27,10 +27,4 @@ export default class ContextMenu {
         this.items = [];
         this.chromeManager.removeContextMenuItems();
     }
-
-    hideItems() {
-        for (let id = 0; id < this.items.length; id++) {
-            this.chromeManager.hideContextMenuItem(id.toString());
-        }
-    }
 }
