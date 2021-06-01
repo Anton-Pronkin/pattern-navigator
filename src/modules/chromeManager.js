@@ -17,12 +17,17 @@ export default class ChromeManager {
         });
     }
 
-    createGlobalContextMenuItem(id, title) {
+    createContextMenuItem(id, title, type) {
         chrome.contextMenus.create({
             id,
             title,
-            contexts: ["all"]
+            contexts: [chrome.contextMenus.ContextType.ALL],
+            type: type || chrome.contextMenus.ItemType.NORMAL
         });
+    }
+
+    createContextMenuSeparator() {
+        this.createContextMenuItem(null, null, chrome.contextMenus.ItemType.SEPARATOR);
     }
 
     hideContextMenuItem(id) {

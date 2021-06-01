@@ -1,3 +1,4 @@
+import ContextMenuItemType from "./contextMenuItemType";
 import MessageTypes from "./messageTypes";
 
 export default class ContextMenuManager {
@@ -10,7 +11,7 @@ export default class ContextMenuManager {
     listen() {
         this.chromeManager.addMessageListener(MessageTypes.contextMenuPreparing, this.prepareContextMenu.bind(this));
         this.chromeManager.addMessageListener(MessageTypes.contextMenuOpened, this.hideContextMenu.bind(this));
-        this.chromeManager.addContextMenuListener(this.processContextMenuItem.bind(this));
+        this.chromeManager.addContextMenuListener(this.contextMenuItemClick.bind(this));
     }
 
     async prepareContextMenu({ selection, content }) {
@@ -18,16 +19,52 @@ export default class ContextMenuManager {
 
         const targetText = selection.length ? selection : content;
         const matches = await this.patternManager.findMatches(targetText);
+
+        this.prepareContextMenuItems(matches);
+    }
+
+    prepareContextMenuItems(matches) {
         for (const match of matches) {
-            this.contextMenu.createItem(match.title, match.url);
+            this.contextMenu.createItem(match.title, {
+                type: ContextMenuItemType.RegularLink,
+                url: match.url
+            });
+        }
+
+        if (matches.length > 1) {
+            this.contextMenu.createSeparator();
+            this.contextMenu.createItem("Open all matches in new tabs", {
+                type: ContextMenuItemType.OpenAllLinks
+            });
         }
     }
 
-    processContextMenuItem({menuItemId}) {
-        const url = this.contextMenu.getUrl(+menuItemId);
-        this.chromeManager.createTab(url);
+    contextMenuItemClick({ menuItemId }) {
+        const menuItem = this.contextMenu.getItem(+menuItemId);
+        this.processContextMenuItem(menuItem);
 
         this.contextMenu.removeItems();
+    }
+
+    processContextMenuItem(menuItem) {
+        switch (menuItem.type) {
+            case ContextMenuItemType.RegularLink:
+                return this.processRegularContextMenuItem(menuItem);
+
+            case ContextMenuItemType.OpenAllLinks:
+                return this.processOpenAllLinksContextMenuItem();
+        }
+    }
+
+    processRegularContextMenuItem(menuItem) {
+        this.chromeManager.createTab(menuItem.url);
+    }
+
+    processOpenAllLinksContextMenuItem() {
+        const menuItems = this.contextMenu.getItems(item => item.type === ContextMenuItemType.RegularLink);
+        for (const menuItem of menuItems) {
+            this.processRegularContextMenuItem(menuItem);
+        }
     }
 
     hideContextMenu() {

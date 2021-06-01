@@ -4,15 +4,23 @@ export default class ContextMenu {
         this.items = [];
     }
 
-    getUrl(id) {
-        return this.items[id].url;
+    getItem(id) {
+        return this.items[id];
     }
 
-    createItem(title, url) {
+    getItems(predicate) {
+        return this.items.filter(predicate);
+    }
+
+    createItem(title, data) {
         const contextMenuItemId = this.items.length.toString();
 
-        this.items.push({ url });
-        this.chromeManager.createGlobalContextMenuItem(contextMenuItemId, title);
+        this.items.push(data);
+        this.chromeManager.createContextMenuItem(contextMenuItemId, title);
+    }
+
+    createSeparator() {
+        this.chromeManager.createContextMenuSeparator();
     }
 
     removeItems() {
