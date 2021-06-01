@@ -7,7 +7,7 @@ document.addEventListener("mousedown", event => {
 });
 
 function processRightClick(event) {
-    chrome.runtime.sendMessage({
+    chrome.runtime?.sendMessage({
         type: MessageTypes.contextMenu,
         data: {
             selection: document.getSelection().toString(),
