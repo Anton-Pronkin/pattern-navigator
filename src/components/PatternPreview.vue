@@ -3,28 +3,38 @@
     <div class="patternPreview__name">{{ pattern.name }}</div>
 
     <div class="patternPreview__settings">
-        <div class="patternPreview__setting-name">RegExp:</div>
-        <div class="patternPreview__setting-value">{{pattern.regexp}}</div>
+      <div class="patternPreview__setting-name">RegExp:</div>
+      <div class="patternPreview__setting-value">{{ pattern.regexp }}</div>
 
-        <div class="patternPreview__setting-name">Title:</div>
-        <div class="patternPreview__setting-value">{{pattern.title}}</div>
+      <div class="patternPreview__setting-name">Title:</div>
+      <div class="patternPreview__setting-value">
+        <highlighted-pattern :color-shift="index">{{ pattern.title }}</highlighted-pattern>
+      </div>
 
-        <div class="patternPreview__setting-name">Url:</div>
-        <div class="patternPreview__setting-value">{{pattern.url}}</div>
+      <div class="patternPreview__setting-name">Url:</div>
+      <div class="patternPreview__setting-value">
+        <highlighted-pattern :color-shift="index">{{ pattern.url }}</highlighted-pattern>
+      </div>
     </div>
-   
+
     <button @click="edit">Edit</button>
     <button @click="remove">Remove</button>
   </div>
 </template>
 
 <script>
+import HighlightedPattern from "./HighlightedPattern.vue";
 export default {
+  components: { HighlightedPattern },
   name: "PatternPreview",
   props: {
     pattern: {
       type: Object,
       required: true,
+    },
+    index: {
+      type: Number,
+      default: 0,
     },
   },
   methods: {

@@ -1,7 +1,7 @@
 <template>
   <div class="pattern-list">
-    <div v-for="pattern in patterns" :key="pattern.id">
-      <pattern-preview :pattern="pattern" @edit="editPattern" @remove="removePattern"></pattern-preview>
+    <div v-for="(pattern, index) in patterns" :key="pattern.id">
+      <pattern-preview :pattern="pattern" :index="index" @edit="editPattern" @remove="removePattern"></pattern-preview>
     </div>
   </div>
 </template>
