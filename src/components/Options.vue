@@ -7,13 +7,14 @@
       @edit-pattern="editPattern"
       @remove-pattern="removePattern"
     ></patterns-preview>
-    <edit-pattern v-else @cancel="cancelEditing" @save="savePattern" :originalPattern="currentPattern"></edit-pattern>
+    <edit-pattern v-else @cancel="stopEditing" @save="savePattern" :originalPattern="currentPattern"></edit-pattern>
   </div>
 </template>
 
 <script>
 import PatternsPreview from "./PatternsPreview.vue";
 import EditPattern from "./EditPattern.vue";
+import "@fontsource/titillium-web";
 
 export default {
   name: "Options",
@@ -49,10 +50,6 @@ export default {
       this.stopEditing();
     },
 
-    cancelEditing: function () {
-      this.stopEditing();
-    },
-
     startEditing(pattern) {
       this.currentPattern = pattern;
       this.isEditing = true;
@@ -77,5 +74,6 @@ export default {
 body {
   margin: 0;
   width: 600px;
+  font: 14px "Titillium Web";
 }
 </style>
