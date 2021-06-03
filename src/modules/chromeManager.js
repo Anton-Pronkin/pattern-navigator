@@ -38,6 +38,12 @@ export default class ChromeManager {
         this.createContextMenuItem(null, null, chrome.contextMenus.ItemType.SEPARATOR);
     }
 
+    hideContextMenuItem(id) {
+        chrome.contextMenus.update(id, {
+            visible: false
+        });
+    }
+
     removeContextMenuItems() {
         chrome.contextMenus.removeAll();
     }

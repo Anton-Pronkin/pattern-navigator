@@ -20,6 +20,7 @@ export default class ContextMenuManager {
         const matches = await this.patternManager.findMatches(targetText);
 
         this.prepareContextMenuItems(matches);
+        this.removeItemsWithDelay();
     }
 
     prepareContextMenuItems(matches) {
@@ -36,6 +37,15 @@ export default class ContextMenuManager {
                 type: ContextMenuItemType.OpenAllLinks
             });
         }
+    }
+
+    removeItemsWithDelay() {
+        // We have no control over the opening of the context menu in browser.
+        // There are some pages that did not include content.js or that do not call the event handler.
+        // We have to hide created menu items manually, otherwise, users will see them on such pages.
+
+        const delay = 1000; 
+        setTimeout(() => this.contextMenu.hideItems(), delay);
     }
 
     contextMenuItemClick({ menuItemId }) {
