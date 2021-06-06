@@ -3,7 +3,7 @@
     <div class="patternPreviewHeader__badge patternPreviewHeader__badge--title">
       <div class="patternPreviewHeader__title">{{ title }}</div>
     </div>
-    <div class="patternPreviewHeader__badge patternPreviewHeader__badge--buttons">
+    <div v-if="showButtons" class="patternPreviewHeader__badge patternPreviewHeader__badge--buttons">
       <div class="patternPreviewHeader__buttons">
         <div class="patternPreviewHeader__button patternPreviewHeader__button--edit" @click="edit"></div>
         <div class="patternPreviewHeader__button patternPreviewHeader__button--remove" @click="remove"></div>
@@ -24,6 +24,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    showButtons: {
+      type: Boolean,
+      default: true
+    }
   },
   methods: {
     edit() {

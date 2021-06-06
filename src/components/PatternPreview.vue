@@ -1,18 +1,22 @@
 <template>
   <div class="patternPreview" @mouseover="hoverPreview = true" @mouseout="hoverPreview = false">
-    <pattern-preview-header :title="pattern.name" :hover="hoverPreview" @edit="edit" @remove="remove"></pattern-preview-header>
-    <pattern-preview-settings :pattern="pattern" :index="index"></pattern-preview-settings>
+    <pattern-preview-header :title="pattern.name" :hover="hoverPreview" :showButtons="!isRemoving" @edit="edit" @remove="removingStarted"></pattern-preview-header>
+    
+    <pattern-preview-settings v-if="!isRemoving" :pattern="pattern" :index="index"></pattern-preview-settings>
+    <pattern-preview-remove v-else :name="pattern.name" @remove="removingConfirmed" @cancel="removingEnded"></pattern-preview-remove>
   </div>
 </template>
 
 <script>
 import PatternPreviewHeader from "./PatternPreviewHeader.vue";
+import PatternPreviewRemove from './PatternPreviewRemove.vue';
 import PatternPreviewSettings from "./PatternPreviewSettings.vue";
 
 export default {
   components: {
     PatternPreviewHeader,
     PatternPreviewSettings,
+    PatternPreviewRemove,
   },
   name: "PatternPreview",
   props: {
@@ -28,6 +32,7 @@ export default {
   data() {
     return {
       hoverPreview: false,
+      isRemoving: false,
     };
   },
   methods: {
@@ -35,7 +40,15 @@ export default {
       this.$emit("edit", { id: this.pattern.id });
     },
 
-    remove: function () {
+    removingStarted() {
+      this.isRemoving = true;
+    },
+
+    removingEnded() {
+      this.isRemoving = false;
+    },
+
+    removingConfirmed() {
       this.$emit("remove", { id: this.pattern.id });
     },
   },
