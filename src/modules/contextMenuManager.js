@@ -24,19 +24,42 @@ export default class ContextMenuManager {
     }
 
     prepareContextMenuItems(matches) {
-        for (const match of matches) {
-            this.contextMenu.createItem(match.title, {
-                type: ContextMenuItemType.RegularLink,
-                url: match.url
-            });
+        if (matches.length == 0) {
+            return;
         }
 
-        if (matches.length > 1) {
-            this.contextMenu.createSeparator();
-            this.contextMenu.createItem("Open all matches in new tabs", {
-                type: ContextMenuItemType.OpenAllLinks
-            });
+        if (matches.length == 1) {
+            return this.prepareSingleMenuItem(matches[0]);
         }
+
+        return this.prepareSeveralMenuItems(matches);
+    }
+
+    prepareSingleMenuItem(match, parentId) {
+        this.contextMenu.createItem({
+            title: match.title,
+            type: ContextMenuItemType.RegularLink,
+            url: match.url,
+            parentId
+        });
+    }
+
+    prepareSeveralMenuItems(matches) {
+        const folderId = this.contextMenu.createItem({
+            title: "Patterns to navigate",
+            type: ContextMenuItemType.Folder,
+        });
+
+        for (const match of matches) {
+            this.prepareSingleMenuItem(match, folderId);
+        }
+
+        this.contextMenu.createSeparator(folderId);
+        this.contextMenu.createItem({
+            title: "Open all in new tabs",
+            type: ContextMenuItemType.OpenAllLinks,
+            parentId: folderId
+        });
     }
 
     removeItemsWithDelay() {
@@ -44,7 +67,7 @@ export default class ContextMenuManager {
         // There are some pages that did not include content.js or that do not call the event handler.
         // We have to hide created menu items manually, otherwise, users will see them on such pages.
 
-        const delay = 1000; 
+        const delay = 1000;
         setTimeout(() => this.contextMenu.hideItems(), delay);
     }
 

@@ -24,18 +24,22 @@ export default class ChromeManager {
         });
     }
 
-    createContextMenuItem(id, title, type) {
+    createContextMenuItem({ id, title, type, parentId }) {
         chrome.contextMenus.create({
-            id,
-            title,
+            id: id,
+            title: title || "",
             contexts: this.contextMenuOptions.contexts,
+            parentId: parentId || null,
             type: type || chrome.contextMenus.ItemType.NORMAL,
             documentUrlPatterns: this.contextMenuOptions.documentUrlPatterns,
         });
     }
 
-    createContextMenuSeparator() {
-        this.createContextMenuItem(null, null, chrome.contextMenus.ItemType.SEPARATOR);
+    createContextMenuSeparator({ parentId }) {
+        this.createContextMenuItem({
+            type: chrome.contextMenus.ItemType.SEPARATOR,
+            parentId
+        });
     }
 
     hideContextMenuItem(id) {
