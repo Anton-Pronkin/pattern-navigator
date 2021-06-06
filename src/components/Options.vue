@@ -73,7 +73,32 @@ export default {
 <style>
 body {
   margin: 0;
-  width: 600px;
+  width: 612px;
+  margin-left: 12px;
   font: 14px "Titillium Web";
+  overflow-y: scroll;
 }
+
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-button {
+    background: transparent;
+}
+
+::-webkit-scrollbar-track-piece {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 6px;
+    background: #ebebeb;
+    cursor: pointer;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #dfdfdf;
+}
+
 </style>
