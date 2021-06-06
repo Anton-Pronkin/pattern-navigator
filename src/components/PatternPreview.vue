@@ -31,7 +31,7 @@ export default {
     };
   },
   methods: {
-    edit: function () {
+    edit() {
       this.$emit("edit", { id: this.pattern.id });
     },
 

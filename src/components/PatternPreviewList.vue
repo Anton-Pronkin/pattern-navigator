@@ -18,11 +18,11 @@ export default {
     },
   },
   methods: {
-    editPattern: function (params) {
+    editPattern(params) {
       this.$emit("edit-pattern", params);
     },
 
-    removePattern: function (params) {
+    removePattern(params) {
       this.$emit("remove-pattern", params);
     },
   },

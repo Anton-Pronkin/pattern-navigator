@@ -26,11 +26,11 @@ export default {
     },
   },
   methods: {
-    edit: function () {
+    edit() {
       this.$emit("edit");
     },
 
-    remove: function () {
+    remove() {
       this.$emit("remove");
     },
   },

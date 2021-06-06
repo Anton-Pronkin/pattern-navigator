@@ -32,20 +32,20 @@ export default {
     };
   },
   methods: {
-    createPattern: function () {
+    createPattern() {
       this.startEditing(null);
     },
 
-    editPattern: async function ({ id }) {
+    async editPattern({ id }) {
       const pattern = await this.storage.getPattern(id);
       this.startEditing(pattern);
     },
 
-    removePattern: async function ({ id }) {
+    async removePattern({ id }) {
       this.patterns = await this.storage.removePattern(id);
     },
 
-    savePattern: async function (pattern) {
+    async savePattern(pattern) {
       this.patterns = await this.storage.addOrUpdatePattern(pattern);
       this.stopEditing();
     },

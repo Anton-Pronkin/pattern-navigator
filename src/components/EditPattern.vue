@@ -39,11 +39,11 @@ export default {
     };
   },
   methods: {
-    cancel: function () {
+    cancel() {
       this.$emit("cancel");
     },
 
-    save: function () {
+    save() {
       const pattern = {
         name: this.name,
         regexp: this.regexp,
