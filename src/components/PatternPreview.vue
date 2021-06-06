@@ -1,8 +1,10 @@
 <template>
   <div class="patternPreview">
     <div class="patternPreview__header">
-      <div class="patternPreview__header-badge">
+      <div class="patternPreview__header-badge patternPreview__header-badge--name">
         <div class="patternPreview__name">{{ pattern.name }}</div>
+      </div>
+      <div class="patternPreview__header-badge patternPreview__header-badge--buttons">
         <div class="patternPreview__buttons">
           <div class="patternPreview__button patternPreview__button--edit" @click="edit"></div>
           <div class="patternPreview__button patternPreview__button--remove" @click="remove"></div>
@@ -70,8 +72,7 @@ export default {
   left: 0;
   right: 0;
 
-  display: flex;
-  justify-content: center;
+  display: grid;
 }
 
 .patternPreview__header::before {
@@ -87,11 +88,16 @@ export default {
   border-bottom: 1px solid #d3d3d3;
   background-color: #fafafa;
   z-index: -1;
+  transition: 0.2s;
+}
+
+.patternPreview:hover .patternPreview__header::before {
+  background-color: #f0f0f0;
 }
 
 .patternPreview__header-badge {
-  display: flex;
-  position: relative;
+  grid-column-start: 1;
+  grid-row-start: 1;
 
   border: 1px solid #d3d3d3;
   border-radius: 8px;
@@ -100,35 +106,30 @@ export default {
   background-color: #ffffff;
 }
 
+.patternPreview__header-badge--name {
+  justify-self: center;
+}
+
+.patternPreview__header-badge--buttons {
+  justify-self: right;
+  margin-right: 16px;
+}
+
 .patternPreview__name {
   padding: 4px 24px;
   font-size: 20px;
   font-weight: bold;
 
-  max-width: 400px;
+  max-width: 320px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  transition: 0.2s;
 }
 
 .patternPreview__buttons {
   display: flex;
-  width: 0;
-
-  align-items: center;
-
-  overflow: hidden;
+  padding: 4px;
   cursor: pointer;
-
-  opacity: 0;
-  transition: 0.4s, margin 0.2s;
-}
-
-.patternPreview:hover .patternPreview__buttons {
-  margin-left: -12px;
-  width: 68px;
-  opacity: 0.8;
 }
 
 .patternPreview__button {
@@ -137,13 +138,16 @@ export default {
   height: 16px;
 
   user-select: none;
+  border-radius: 8px;
   background: transparent no-repeat center center;
-  transition: 0.4s, transform 0.1s;
+
+  opacity: 0.8;
+  transition: 0.1s;
 }
 
 .patternPreview__button:hover {
   background-color: #f1f1f1;
-  border-radius: 8px;
+  opacity: 1;
 }
 
 .patternPreview__button:active {
