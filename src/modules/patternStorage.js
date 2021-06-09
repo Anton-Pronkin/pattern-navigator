@@ -33,7 +33,8 @@ export default class PatternStorage {
             patterns[existingPatternIndex] = pattern;
         }
         else {
-            const maxId = patterns.length ? patterns.map(pattern => pattern.id) : 0;
+            const ids = patterns.map(pattern => pattern.id);
+            const maxId = patterns.length ? Math.max(...ids) : 0;
             pattern.id = maxId + 1;
 
             patterns.push(pattern);
