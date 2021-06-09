@@ -8,35 +8,35 @@ export default class ContextMenuManager {
         this.chromeManager = props.chromeManager;
     }
 
-    listen() {
-        this.chromeManager.addMessageListener(MessageTypes.contextMenu, this.prepareContextMenu.bind(this));
-        this.chromeManager.addContextMenuListener(this.contextMenuItemClick.bind(this));
+    async listen() {
+        await this.chromeManager.addMessageListener(MessageTypes.contextMenu, this.prepareContextMenu.bind(this));
+        await this.chromeManager.addContextMenuListener(this.contextMenuItemClick.bind(this));
     }
 
     async prepareContextMenu({ selection, content }) {
-        this.contextMenu.removeItems();
+        await this.contextMenu.removeItems();
 
         const targetText = selection.length ? selection : content;
         const matches = await this.patternManager.findMatches(targetText);
 
-        this.prepareContextMenuItems(matches);
+        await this.prepareContextMenuItems(matches);
         this.removeItemsWithDelay();
     }
 
-    prepareContextMenuItems(matches) {
+    async prepareContextMenuItems(matches) {
         if (matches.length == 0) {
             return;
         }
 
         if (matches.length == 1) {
-            return this.prepareSingleMenuItem(matches[0]);
+            return await this.prepareSingleMenuItem(matches[0]);
         }
 
-        return this.prepareSeveralMenuItems(matches);
+        return await this.prepareSeveralMenuItems(matches);
     }
 
-    prepareSingleMenuItem(match, parentId) {
-        this.contextMenu.createItem({
+    async prepareSingleMenuItem(match, parentId) {
+        await this.contextMenu.createItem({
             title: match.title,
             type: ContextMenuItemType.RegularLink,
             url: match.url,
@@ -44,18 +44,18 @@ export default class ContextMenuManager {
         });
     }
 
-    prepareSeveralMenuItems(matches) {
-        const folderId = this.contextMenu.createItem({
+    async prepareSeveralMenuItems(matches) {
+        const folderId = await this.contextMenu.createItem({
             title: "Patterns to navigate",
             type: ContextMenuItemType.Folder,
         });
 
         for (const match of matches) {
-            this.prepareSingleMenuItem(match, folderId);
+            await this.prepareSingleMenuItem(match, folderId);
         }
 
-        this.contextMenu.createSeparator(folderId);
-        this.contextMenu.createItem({
+        await this.contextMenu.createSeparator(folderId);
+        await this.contextMenu.createItem({
             title: "Open all in new tabs",
             type: ContextMenuItemType.OpenAllLinks,
             parentId: folderId
@@ -68,34 +68,34 @@ export default class ContextMenuManager {
         // We have to hide created menu items manually, otherwise, users will see them on such pages.
 
         const delay = 1000;
-        setTimeout(() => this.contextMenu.hideItems(), delay);
+        setTimeout(async () => await this.contextMenu.hideItems(), delay);
     }
 
-    contextMenuItemClick({ menuItemId }) {
+    async contextMenuItemClick({ menuItemId }) {
         const menuItem = this.contextMenu.getItem(+menuItemId);
-        this.processContextMenuItem(menuItem);
+        await this.processContextMenuItem(menuItem);
 
-        this.contextMenu.removeItems();
+        await this.contextMenu.removeItems();
     }
 
-    processContextMenuItem(menuItem) {
+    async processContextMenuItem(menuItem) {
         switch (menuItem.type) {
             case ContextMenuItemType.RegularLink:
-                return this.processRegularContextMenuItem(menuItem);
+                return await this.processRegularContextMenuItem(menuItem);
 
             case ContextMenuItemType.OpenAllLinks:
-                return this.processOpenAllLinksContextMenuItem();
+                return await this.processOpenAllLinksContextMenuItem();
         }
     }
 
-    processRegularContextMenuItem(menuItem) {
-        this.chromeManager.createTab(menuItem.url);
+    async processRegularContextMenuItem(menuItem) {
+        await this.chromeManager.createTab(menuItem.url);
     }
 
-    processOpenAllLinksContextMenuItem() {
+    async processOpenAllLinksContextMenuItem() {
         const menuItems = this.contextMenu.getItems(item => item.type === ContextMenuItemType.RegularLink);
         for (const menuItem of menuItems) {
-            this.processRegularContextMenuItem(menuItem);
+            await this.processRegularContextMenuItem(menuItem);
         }
     }
 }

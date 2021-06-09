@@ -12,11 +12,11 @@ export default class ContextMenu {
         return this.items.filter(predicate);
     }
 
-    createItem(props) {
+    async createItem(props) {
         const contextMenuItemId = this.items.length.toString();
 
         this.items.push(props);
-        this.chromeManager.createContextMenuItem({
+        await this.chromeManager.createContextMenuItem({
             id: contextMenuItemId,
             title: props.title,
             parentId: props.parentId
@@ -25,18 +25,18 @@ export default class ContextMenu {
         return contextMenuItemId;
     }
 
-    createSeparator(parentId) {
-        this.chromeManager.createContextMenuSeparator({ parentId });
+    async createSeparator(parentId) {
+        await this.chromeManager.createContextMenuSeparator({ parentId });
     }
 
-    removeItems() {
+    async removeItems() {
         this.items = [];
-        this.chromeManager.removeContextMenuItems();
+        await this.chromeManager.removeContextMenuItems();
     }
 
-    hideItems() {
+    async hideItems() {
         for (let id = 0; id < this.items.length; id++) {
-            this.chromeManager.hideContextMenuItem(id.toString());
+            await this.chromeManager.hideContextMenuItem(id.toString());
         }
     }
 }

@@ -17,7 +17,7 @@ export default class PatternManager {
 
         const result = [];
         for (const pattern of patterns) {
-            const matches = text?.matchAll(pattern.regexp);
+            const matches = text?.matchAll(pattern.regexp) ?? [];
             
             for (const match of matches) {
                 const title = this.resolveRegExp(match, pattern.title);

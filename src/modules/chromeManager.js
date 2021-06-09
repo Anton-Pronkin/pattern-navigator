@@ -6,26 +6,26 @@ export default class ChromeManager {
         };
     }
 
-    createTab(url) {
-        chrome.tabs.create({ url });
+    async createTab(url) {
+        await chrome.tabs.create({ url });
     }
 
-    addMessageListener(type, handler) {
-        chrome.extension.onMessage.addListener((message, sender, sendResponse) => {
+    async addMessageListener(type, handler) {
+        await chrome.extension.onMessage.addListener((message, sender, sendResponse) => {
             if (message && message.type && message.type === type) {
                 handler(message.data, sender, sendResponse);
             }
         });
     }
 
-    addContextMenuListener(handler) {
-        chrome.contextMenus.onClicked.addListener((data, tab) => {
+    async addContextMenuListener(handler) {
+        await chrome.contextMenus.onClicked.addListener((data, tab) => {
             handler(data, tab);
         });
     }
 
-    createContextMenuItem({ id, title, type, parentId }) {
-        chrome.contextMenus.create({
+    async createContextMenuItem({ id, title, type, parentId }) {
+        await chrome.contextMenus.create({
             id: id,
             title: title || "",
             contexts: this.contextMenuOptions.contexts,
@@ -35,25 +35,25 @@ export default class ChromeManager {
         });
     }
 
-    createContextMenuSeparator({ parentId }) {
-        this.createContextMenuItem({
+    async createContextMenuSeparator({ parentId }) {
+        await this.createContextMenuItem({
             type: chrome.contextMenus.ItemType.SEPARATOR,
             parentId
         });
     }
 
-    hideContextMenuItem(id) {
-        chrome.contextMenus.update(id, {
+    async hideContextMenuItem(id) {
+        await chrome.contextMenus.update(id, {
             visible: false
         });
     }
 
-    removeContextMenuItems() {
-        chrome.contextMenus.removeAll();
+    async removeContextMenuItems() {
+        await chrome.contextMenus.removeAll();
     }
 
-    saveAs(url, filename) {
-        chrome.downloads.download({
+    async saveAs(url, filename) {
+        await chrome.downloads.download({
             url,
             filename,
             saveAs: true
