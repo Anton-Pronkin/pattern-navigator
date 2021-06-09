@@ -51,4 +51,12 @@ export default class ChromeManager {
     removeContextMenuItems() {
         chrome.contextMenus.removeAll();
     }
+
+    saveAs(url, filename) {
+        chrome.downloads.download({
+            url,
+            filename,
+            saveAs: true
+        });
+    }
 }

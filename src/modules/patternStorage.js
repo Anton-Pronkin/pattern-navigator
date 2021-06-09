@@ -43,6 +43,11 @@ export default class PatternStorage {
         return await this.getPatterns();
     }
 
+    async savePatterns(patterns) {
+        await this.set(this.key, patterns);
+        return await this.getPatterns();
+    }
+
     async get(key, defaultValue) {
         if (this.cache.expirationTime > new Date() && this.cache.patterns.has(key)) {
             return this.cache.patterns.get(key);

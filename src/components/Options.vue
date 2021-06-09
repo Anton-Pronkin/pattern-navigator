@@ -6,6 +6,8 @@
       @create-pattern="createPattern"
       @edit-pattern="editPattern"
       @remove-pattern="removePattern"
+      @export-config="exportConfig"
+      @import-config="importConfig"
     ></patterns-preview>
     <edit-pattern v-else @cancel="stopEditing" @save="savePattern" :originalPattern="currentPattern"></edit-pattern>
   </div>
@@ -20,6 +22,10 @@ export default {
   name: "Options",
   props: {
     storage: {
+      type: Object,
+      required: true,
+    },
+    configurationManager: {
       type: Object,
       required: true,
     },
@@ -59,6 +65,14 @@ export default {
       this.currentPattern = null;
       this.isEditing = false;
     },
+
+    async exportConfig() {
+      await this.configurationManager.export();
+    },
+
+    async importConfig() {
+      this.patterns = await this.configurationManager.import();
+    },
   },
   async mounted() {
     this.patterns = await this.storage.getPatterns();
@@ -80,25 +94,24 @@ body {
 }
 
 ::-webkit-scrollbar {
-    width: 12px;
+  width: 12px;
 }
 
 ::-webkit-scrollbar-button {
-    background: transparent;
+  background: transparent;
 }
 
 ::-webkit-scrollbar-track-piece {
-    background: transparent;
+  background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-    border-radius: 6px;
-    background: #ebebeb;
-    cursor: pointer;
+  border-radius: 6px;
+  background: #ebebeb;
+  cursor: pointer;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: #dfdfdf;
+  background: #dfdfdf;
 }
-
 </style>

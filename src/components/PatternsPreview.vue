@@ -2,6 +2,8 @@
   <div class="patternsPreview">
     <pattern-preview-list :patterns="patterns" @edit-pattern="editPattern" @remove-pattern="removePattern"></pattern-preview-list>
     <button class="patternsPreview__createPattern" @click="createPattern">Create a new pattern</button>
+    <button class="patternsPreview__createPattern" @click="exportConfig">Export configuration</button>
+    <button class="patternsPreview__createPattern" @click="importConfig">Import configuration</button>
   </div>
 </template>
 
@@ -27,6 +29,14 @@ export default {
 
     removePattern(params) {
       this.$emit("remove-pattern", params);
+    },
+
+    exportConfig() {
+      this.$emit("export-config");
+    },
+
+    importConfig() {
+      this.$emit("import-config");
     },
   },
   components: {
