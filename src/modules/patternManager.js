@@ -27,7 +27,8 @@ export default class PatternManager {
             }
         }
 
-        return result;
+        const resultWithoutDuplicats = new Map(result.map(x => [x.title, x]));
+        return Array.from(resultWithoutDuplicats.values());
     }
 
     resolveRegExp(match, text) {
