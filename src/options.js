@@ -1,7 +1,7 @@
 import Vue from "vue";
 import Options from "./components/Options.vue";
-import ChromeManager from "./modules/chromeManager";
-import ChromeStorage from "./modules/chromeStorage";
+import ChromeManager from "./modules/chrome/chromeManager";
+import ChromeStorage from "./modules/chrome/chromeStorage";
 import ConfigurationManager from "./modules/configurationManager";
 import PatternStorage from "./modules/patternStorage";
 

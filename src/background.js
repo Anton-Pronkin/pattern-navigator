@@ -1,9 +1,9 @@
 import ChromeContextMenu from "./modules/contextMenu";
 import PatternManager from "./modules/patternManager";
 import ContextMenuManager from "./modules/contextMenuManager";
-import ChromeManager from "./modules/chromeManager";
+import ChromeManager from "./modules/chrome/chromeManager";
+import ChromeStorage from "./modules/chrome/chromeStorage";
 import PatternStorage from "./modules/patternStorage";
-import ChromeStorage from "./modules/chromeStorage";
 
 const chromeManager = new ChromeManager();
 const contextMenu = new ChromeContextMenu(chromeManager);

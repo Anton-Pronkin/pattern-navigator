@@ -1,5 +1,5 @@
-import ContextMenuItemType from "./contextMenuItemType";
-import MessageTypes from "./messageTypes";
+import ContextMenuItemType from "./enums/contextMenuItemType";
+import MessageType from "./enums/messageType";
 
 export default class ContextMenuManager {
     constructor(props) {
@@ -9,7 +9,7 @@ export default class ContextMenuManager {
     }
 
     async listen() {
-        await this.chromeManager.addMessageListener(MessageTypes.contextMenu, this.prepareContextMenu.bind(this));
+        await this.chromeManager.addMessageListener(MessageType.contextMenu, this.prepareContextMenu.bind(this));
         await this.chromeManager.addContextMenuListener(this.contextMenuItemClick.bind(this));
     }
 
@@ -38,7 +38,7 @@ export default class ContextMenuManager {
     async prepareSingleMenuItem(match, parentId) {
         await this.contextMenu.createItem({
             title: match.title,
-            type: ContextMenuItemType.RegularLink,
+            type: ContextMenuItemType.regularLink,
             url: match.url,
             parentId
         });
@@ -47,7 +47,7 @@ export default class ContextMenuManager {
     async prepareSeveralMenuItems(matches) {
         const folderId = await this.contextMenu.createItem({
             title: "Patterns to navigate",
-            type: ContextMenuItemType.Folder,
+            type: ContextMenuItemType.folder,
         });
 
         for (const match of matches) {
@@ -57,7 +57,7 @@ export default class ContextMenuManager {
         await this.contextMenu.createSeparator(folderId);
         await this.contextMenu.createItem({
             title: "Open all in new tabs",
-            type: ContextMenuItemType.OpenAllLinks,
+            type: ContextMenuItemType.openAllLinks,
             parentId: folderId
         });
     }
@@ -80,11 +80,11 @@ export default class ContextMenuManager {
 
     async processContextMenuItem(menuItem) {
         switch (menuItem.type) {
-            case ContextMenuItemType.RegularLink:
+            case ContextMenuItemType.regularLink:
                 return await this.processRegularContextMenuItem(menuItem);
 
-            case ContextMenuItemType.OpenAllLinks:
-                return await this.processOpenAllLinksContextMenuItem();
+            case ContextMenuItemType.openAllLinks:
+                return await this.processopenAllLinksContextMenuItem();
         }
     }
 
@@ -92,8 +92,8 @@ export default class ContextMenuManager {
         await this.chromeManager.createTab(menuItem.url);
     }
 
-    async processOpenAllLinksContextMenuItem() {
-        const menuItems = this.contextMenu.getItems(item => item.type === ContextMenuItemType.RegularLink);
+    async processopenAllLinksContextMenuItem() {
+        const menuItems = this.contextMenu.getItems(item => item.type === ContextMenuItemType.regularLink);
         for (const menuItem of menuItems) {
             await this.processRegularContextMenuItem(menuItem);
         }
