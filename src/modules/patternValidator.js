@@ -6,54 +6,54 @@ export default class PatternValidator {
     }
 
     validate() {
-        if (!this.validateId(this.pattern.id)) {
+        if (!PatternValidator.validateId(this.pattern.id)) {
             return this.invalid("Pattern id is not valid.");
         }
 
-        if (!this.validateName(this.pattern.name)) {
+        if (!PatternValidator.validateName(this.pattern.name)) {
             return this.invalid("Pattern name is not valid.");
         }
 
-        if (!this.validateRegExp(this.pattern.regexp)) {
+        if (!PatternValidator.validateRegExp(this.pattern.regexp)) {
             return this.invalid("Pattern regexp is not valid.");
         }
 
-        if (!this.validateUrl(this.pattern.url)) {
+        if (!PatternValidator.validateUrl(this.pattern.url)) {
             return this.invalid("Pattern url is not valid.");
         }
 
-        if (!this.validateUrl(this.pattern.title)) {
+        if (!PatternValidator.validateUrl(this.pattern.title)) {
             return this.invalid("Pattern title is not valid.");
         }
 
         return this.valid();
     }
 
-    validateId(id) {
+    static validateId(id) {
         return this.validateNonNegativeNumber(id);
     }
 
-    validateName(name) {
+    static validateName(name) {
         return this.validateNonEmptyText(name);
     }
 
-    validateRegExp(regexp) {
+    static validateRegExp(regexp) {
         return this.validateNonEmptyText(regexp);
     }
 
-    validateUrl(url) {
+    static validateUrl(url) {
         return this.validateNonEmptyText(url);
     }
 
-    validateTitle(title) {
+    static validateTitle(title) {
         return this.validateNonEmptyText(title);
     }
 
-    validateNonNegativeNumber(value) {
+    static validateNonNegativeNumber(value) {
         return typeof value == "number" && !isNaN(value) && value >= 0;
     }
 
-    validateNonEmptyText(value) {
+    static validateNonEmptyText(value) {
         return typeof value == "string" && value.length > 0;
     }
 
