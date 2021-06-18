@@ -12,7 +12,7 @@
       @import-config="importConfig"
     ></patterns-preview>
 
-    <edit-pattern v-else @cancel="stopEditing" @save="savePattern" :originalPattern="currentPattern"></edit-pattern>
+    <edit-pattern v-else @cancel="stopEditing" @save="savePattern" :original-pattern="currentPattern"></edit-pattern>
   </div>
 </template>
 

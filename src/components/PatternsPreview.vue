@@ -1,9 +1,9 @@
 <template>
-  <div class="patternsPreview">
+  <div class="patterns-preview">
     <pattern-preview-list :patterns="patterns" @edit-pattern="editPattern" @remove-pattern="removePattern"></pattern-preview-list>
-    <button class="patternsPreview__createPattern" @click="createPattern">Create a new pattern</button>
-    <button class="patternsPreview__createPattern" @click="exportConfig">Export configuration</button>
-    <button class="patternsPreview__createPattern" @click="importConfig">Import configuration</button>
+    <button class="patterns-preview__create-pattern" @click="createPattern">Create a new pattern</button>
+    <button class="patterns-preview__create-pattern" @click="exportConfig">Export configuration</button>
+    <button class="patterns-preview__create-pattern" @click="importConfig">Import configuration</button>
   </div>
 </template>
 
@@ -46,13 +46,13 @@ export default {
 </script>
 
 <style>
-.patternsPreview {
+.patterns-preview {
   display: flex;
   flex-direction: column;
   padding: 16px 0;
 }
 
-.patternsPreview__createPattern {
+.patterns-preview__create-pattern {
   align-self: flex-end;
   padding: 4px 12px;
 }

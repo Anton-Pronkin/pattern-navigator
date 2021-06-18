@@ -24,7 +24,8 @@ export default {
   computed: {
     isError() {
       return this.message.type == TopMessageType.error;
-    },isSuccess() {
+    },
+    isSuccess() {
       return this.message.type == TopMessageType.success;
     },
   },

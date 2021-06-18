@@ -1,5 +1,5 @@
 <template>
-  <div class="patternPreviewSettings">
+  <div class="pattern-preview-settings">
     <div class="patternPreviewSetting__name">RegExp:</div>
     <div class="patternPreviewSetting__value">{{ pattern.regexp }}</div>
 
@@ -37,7 +37,7 @@ export default {
 </script>
 
 <style>
-.patternPreviewSettings {
+.pattern-preview-settings {
   display: grid;
   grid-template-columns: auto 1fr;
   gap: 4px 12px;

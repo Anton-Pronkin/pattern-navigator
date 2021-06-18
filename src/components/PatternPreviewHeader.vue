@@ -1,12 +1,12 @@
 <template>
-  <div class="patternPreviewHeader" :class="{ 'patternPreviewHeader--hover': hover }">
-    <div class="patternPreviewHeader__badge patternPreviewHeader__badge--title">
-      <div class="patternPreviewHeader__title">{{ title }}</div>
+  <div class="pattern-preview-header" :class="{ 'pattern-preview-header--hover': hover }">
+    <div class="pattern-preview-header__badge pattern-preview-header__badge--title">
+      <div class="pattern-preview-header__title">{{ title }}</div>
     </div>
-    <div v-if="showButtons" class="patternPreviewHeader__badge patternPreviewHeader__badge--buttons">
-      <div class="patternPreviewHeader__buttons">
-        <div class="patternPreviewHeader__button patternPreviewHeader__button--edit" @click="edit"></div>
-        <div class="patternPreviewHeader__button patternPreviewHeader__button--remove" @click="remove"></div>
+    <div v-if="showButtons" class="pattern-preview-header__badge pattern-preview-header__badge--buttons">
+      <div class="pattern-preview-header__buttons">
+        <div class="pattern-preview-header__button pattern-preview-header__button--edit" @click="edit"></div>
+        <div class="pattern-preview-header__button pattern-preview-header__button--remove" @click="remove"></div>
       </div>
     </div>
   </div>
@@ -26,8 +26,8 @@ export default {
     },
     showButtons: {
       type: Boolean,
-      default: true
-    }
+      default: true,
+    },
   },
   methods: {
     edit() {
@@ -42,7 +42,7 @@ export default {
 </script>
 
 <style>
-.patternPreviewHeader {
+.pattern-preview-header {
   position: absolute;
   top: -12px;
   left: 0;
@@ -51,7 +51,7 @@ export default {
   display: grid;
 }
 
-.patternPreviewHeader::before {
+.pattern-preview-header::before {
   content: "";
   display: block;
 
@@ -67,11 +67,11 @@ export default {
   transition: 0.2s;
 }
 
-.patternPreviewHeader--hover::before {
+.pattern-preview-header--hover::before {
   background-color: #f0f0f0;
 }
 
-.patternPreviewHeader__badge {
+.pattern-preview-header__badge {
   grid-column-start: 1;
   grid-row-start: 1;
 
@@ -82,16 +82,16 @@ export default {
   background-color: #ffffff;
 }
 
-.patternPreviewHeader__badge--title {
+.pattern-preview-header__badge--title {
   justify-self: center;
 }
 
-.patternPreviewHeader__badge--buttons {
+.pattern-preview-header__badge--buttons {
   justify-self: right;
   margin-right: 16px;
 }
 
-.patternPreviewHeader__title {
+.pattern-preview-header__title {
   padding: 4px 24px;
   font-size: 20px;
   font-weight: bold;
@@ -102,13 +102,13 @@ export default {
   text-overflow: ellipsis;
 }
 
-.patternPreviewHeader__buttons {
+.pattern-preview-header__buttons {
   display: flex;
   padding: 4px;
   cursor: pointer;
 }
 
-.patternPreviewHeader__button {
+.pattern-preview-header__button {
   padding: 8px;
   width: 16px;
   height: 16px;
@@ -121,20 +121,20 @@ export default {
   transition: 0.1s;
 }
 
-.patternPreviewHeader__button:hover {
+.pattern-preview-header__button:hover {
   background-color: #f1f1f1;
   opacity: 1;
 }
 
-.patternPreviewHeader__button:active {
+.pattern-preview-header__button:active {
   transform: scale(0.9);
 }
 
-.patternPreviewHeader__button--edit {
+.pattern-preview-header__button--edit {
   background-image: url(../images/pen.png);
 }
 
-.patternPreviewHeader__button--remove {
+.pattern-preview-header__button--remove {
   background-image: url(../images/cross.png);
 }
 </style>

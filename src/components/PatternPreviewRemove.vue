@@ -1,7 +1,7 @@
 <template>
-  <div class="patternPreviewRemove">
-    <span class="patternPreviewRemove__message">Do you want to remove the "{{ name }}" pattern?</span>
-    <div class="patternPreviewRemove__buttons">
+  <div class="pattern-preview-remove">
+    <span class="pattern-preview-remove__message">Do you want to remove the "{{ name }}" pattern?</span>
+    <div class="pattern-preview-remove__buttons">
       <button @click="remove">Remove</button>
       <button @click="cancel">Cancel</button>
     </div>
@@ -24,21 +24,20 @@ export default {
 
     cancel() {
       this.$emit("cancel");
-    }
-  }
+    },
+  },
 };
 </script>
 
 <style>
-.patternPreviewRemove {
+.pattern-preview-remove {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.patternPreviewRemove__message {
+.pattern-preview-remove__message {
   text-align: center;
   font-size: 16px;
 }
-
 </style>

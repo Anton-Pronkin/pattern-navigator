@@ -1,7 +1,13 @@
 <template>
-  <div class="patternPreview" @mouseover="hoverPreview = true" @mouseout="hoverPreview = false">
-    <pattern-preview-header :title="pattern.name" :hover="hoverPreview" :showButtons="!isRemoving" @edit="edit" @remove="removingStarted"></pattern-preview-header>
-    
+  <div class="pattern-preview" @mouseover="hoverPreview = true" @mouseout="hoverPreview = false">
+    <pattern-preview-header
+      :title="pattern.name"
+      :hover="hoverPreview"
+      :showButtons="!isRemoving"
+      @edit="edit"
+      @remove="removingStarted"
+    ></pattern-preview-header>
+
     <pattern-preview-settings v-if="!isRemoving" :pattern="pattern" :index="index"></pattern-preview-settings>
     <pattern-preview-remove v-else :name="pattern.name" @remove="removingConfirmed" @cancel="removingEnded"></pattern-preview-remove>
   </div>
@@ -9,7 +15,7 @@
 
 <script>
 import PatternPreviewHeader from "./PatternPreviewHeader.vue";
-import PatternPreviewRemove from './PatternPreviewRemove.vue';
+import PatternPreviewRemove from "./PatternPreviewRemove.vue";
 import PatternPreviewSettings from "./PatternPreviewSettings.vue";
 
 export default {
@@ -56,7 +62,7 @@ export default {
 </script>
 
 <style>
-.patternPreview {
+.pattern-preview {
   position: relative;
   margin: 8px 0 24px;
   padding: 32px 16px 8px;
