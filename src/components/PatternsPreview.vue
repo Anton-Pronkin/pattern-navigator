@@ -1,14 +1,13 @@
 <template>
   <div class="patterns-preview">
     <pattern-preview-list :patterns="patterns" @edit-pattern="editPattern" @remove-pattern="removePattern"></pattern-preview-list>
-    <button class="patterns-preview__create-pattern" @click="createPattern">Create a new pattern</button>
-    <button class="patterns-preview__create-pattern" @click="exportConfig">Export configuration</button>
-    <button class="patterns-preview__create-pattern" @click="importConfig">Import configuration</button>
+    <patterns-actions @create-pattern="createPattern" @export-config="exportConfig" @import-config="importConfig"></patterns-actions>
   </div>
 </template>
 
 <script>
 import PatternPreviewList from "./PatternPreviewList.vue";
+import PatternsActions from "./PatternsActions.vue";
 
 export default {
   name: "PatternsPreview",
@@ -19,16 +18,16 @@ export default {
     },
   },
   methods: {
-    createPattern() {
-      this.$emit("create-pattern");
-    },
-
     editPattern(params) {
       this.$emit("edit-pattern", params);
     },
 
     removePattern(params) {
       this.$emit("remove-pattern", params);
+    },
+
+    createPattern() {
+      this.$emit("create-pattern");
     },
 
     exportConfig() {
@@ -41,6 +40,7 @@ export default {
   },
   components: {
     PatternPreviewList,
+    PatternsActions,
   },
 };
 </script>
