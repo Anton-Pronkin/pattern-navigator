@@ -49,6 +49,7 @@ export default {
 .patterns-preview {
   display: flex;
   flex-direction: column;
+  gap: 16px;
   padding: 16px 0;
 }
 

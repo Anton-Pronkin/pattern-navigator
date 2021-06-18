@@ -64,7 +64,6 @@ export default {
 <style>
 .pattern-preview {
   position: relative;
-  margin: 8px 0 24px;
   padding: 32px 16px 8px;
 
   border: 1px solid #d3d3d3;

@@ -71,7 +71,7 @@ export default {
 
 <style>
 .edit-pattern {
-  margin: 8px;
+  padding: 8px;
 }
 
 .edit-pattern__fields {

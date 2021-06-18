@@ -1,6 +1,6 @@
 <template>
   <div class="options">
-    <top-message-list :messages="messages" @close="closeMessage"></top-message-list>
+    <top-message-list v-if="messages.length" :messages="messages" @close="closeMessage"></top-message-list>
 
     <patterns-preview
       v-if="!isEditing"
@@ -113,6 +113,12 @@ body {
   width: 612px;
   font: 14px "Titillium Web";
   overflow-y: scroll;
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 ::-webkit-scrollbar {

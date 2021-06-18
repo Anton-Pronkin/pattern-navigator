@@ -38,4 +38,9 @@ export default {
 </script>
 
 <style>
+.pattern-preview-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
 </style>
