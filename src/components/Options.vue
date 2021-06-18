@@ -81,7 +81,18 @@ export default {
     },
 
     async importConfig() {
-      this.patterns = await this.configurationManager.import();
+      try {
+        this.patterns = await this.configurationManager.import();
+        this.messages.push({
+          type: TopMessageType.success,
+          text: "The configuration is imported.",
+        });
+      } catch (errorMessage) {
+        this.messages.push({
+          type: TopMessageType.error,
+          text: errorMessage,
+        });
+      }
     },
   },
   async mounted() {
