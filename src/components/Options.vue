@@ -1,5 +1,7 @@
 <template>
   <div class="options">
+    <top-message-list :messages="messages" @close="closeMessage"></top-message-list>
+
     <patterns-preview
       v-if="!isEditing"
       :patterns="patterns"
@@ -9,6 +11,7 @@
       @export-config="exportConfig"
       @import-config="importConfig"
     ></patterns-preview>
+
     <edit-pattern v-else @cancel="stopEditing" @save="savePattern" :originalPattern="currentPattern"></edit-pattern>
   </div>
 </template>
@@ -16,7 +19,9 @@
 <script>
 import PatternsPreview from "./PatternsPreview.vue";
 import EditPattern from "./EditPattern.vue";
+import TopMessageType from "./enums/TopMessageType";
 import "@fontsource/titillium-web";
+import TopMessageList from "./TopMessageList.vue";
 
 export default {
   name: "Options",
@@ -35,6 +40,7 @@ export default {
       isEditing: false,
       currentPattern: null,
       patterns: [],
+      messages: [],
     };
   },
   methods: {
@@ -66,6 +72,10 @@ export default {
       this.isEditing = false;
     },
 
+    closeMessage(index) {
+      this.messages.splice(index, 1);
+    },
+
     async exportConfig() {
       await this.configurationManager.export();
     },
@@ -80,15 +90,16 @@ export default {
   components: {
     EditPattern,
     PatternsPreview,
+    TopMessageList,
   },
 };
 </script>
 
 <style>
 body {
-  margin: 0;
+  margin: 0 0 0 12px;
+  padding: 0 8px;
   width: 612px;
-  margin-left: 12px;
   font: 14px "Titillium Web";
   overflow-y: scroll;
 }

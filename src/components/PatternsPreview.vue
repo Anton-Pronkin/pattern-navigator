@@ -49,7 +49,7 @@ export default {
 .patternsPreview {
   display: flex;
   flex-direction: column;
-  padding: 8px;
+  padding: 16px 0;
 }
 
 .patternsPreview__createPattern {
