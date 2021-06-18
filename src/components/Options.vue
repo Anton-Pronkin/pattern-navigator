@@ -20,7 +20,6 @@
 import PatternsPreview from "./PatternsPreview.vue";
 import EditPattern from "./EditPattern.vue";
 import TopMessageType from "./enums/TopMessageType";
-import "@fontsource/titillium-web";
 import TopMessageList from "./TopMessageList.vue";
 
 export default {
@@ -107,39 +106,9 @@ export default {
 </script>
 
 <style>
-body {
-  margin: 0 0 0 12px;
-  padding: 0 8px;
-  width: 612px;
-  font: 14px "Titillium Web";
-  overflow-y: scroll;
-}
-
 .options {
   display: flex;
   flex-direction: column;
   gap: 8px;
-}
-
-::-webkit-scrollbar {
-  width: 12px;
-}
-
-::-webkit-scrollbar-button {
-  background: transparent;
-}
-
-::-webkit-scrollbar-track-piece {
-  background: transparent;
-}
-
-::-webkit-scrollbar-thumb {
-  border-radius: 6px;
-  background: #ebebeb;
-  cursor: pointer;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #dfdfdf;
 }
 </style>

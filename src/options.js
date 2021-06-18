@@ -1,5 +1,5 @@
 import Vue from "vue";
-import Options from "./components/Options.vue";
+import OptionsPage from "./components/OptionsPage.vue";
 import ChromeManager from "./modules/chrome/chromeManager";
 import ChromeStorage from "./modules/chrome/chromeStorage";
 import ConfigurationManager from "./modules/configurationManager";
@@ -13,7 +13,7 @@ const configurationManager = new ConfigurationManager(storage, chromeManager);
 
 new Vue({
 	el: "#root",
-	render: renderComponent => renderComponent(Options, {
+	render: renderComponent => renderComponent(OptionsPage, {
 		props: { storage, configurationManager }
 	})
 });
