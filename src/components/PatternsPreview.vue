@@ -1,6 +1,12 @@
 <template>
   <div class="patterns-preview">
-    <pattern-preview-list :patterns="patterns" @edit-pattern="editPattern" @remove-pattern="removePattern"></pattern-preview-list>
+    <pattern-preview-list
+      v-if="patterns.length"
+      :patterns="patterns"
+      @edit-pattern="editPattern"
+      @remove-pattern="removePattern"
+    ></pattern-preview-list>
+    
     <patterns-actions @create-pattern="createPattern" @export-config="exportConfig" @import-config="importConfig"></patterns-actions>
   </div>
 </template>
@@ -50,7 +56,7 @@ export default {
   display: flex;
   flex-direction: column;
   gap: 16px;
-  padding: 16px 0;
+  padding: 12px 0;
 }
 
 .patterns-preview__create-pattern {

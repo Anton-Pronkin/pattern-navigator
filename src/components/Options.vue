@@ -89,7 +89,7 @@ export default {
       } catch (errorMessage) {
         this.messages.push({
           type: TopMessageType.error,
-          text: errorMessage,
+          text: "The configuration is not imported. " + errorMessage,
         });
       }
     },
