@@ -61,6 +61,8 @@ export default {
   height: 16px;
   border-radius: 8px;
 
+  cursor: pointer;
+  transition: 0.1s;
   background: url(../images/cross.png) no-repeat center center;
 }
 
