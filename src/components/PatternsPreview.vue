@@ -6,7 +6,7 @@
       @edit-pattern="editPattern"
       @remove-pattern="removePattern"
     ></pattern-preview-list>
-    
+
     <patterns-actions @create-pattern="createPattern" @export-config="exportConfig" @import-config="importConfig"></patterns-actions>
   </div>
 </template>
@@ -51,16 +51,16 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
 .patterns-preview {
   display: flex;
   flex-direction: column;
   gap: 16px;
   padding: 12px 0;
-}
 
-.patterns-preview__create-pattern {
-  align-self: flex-end;
-  padding: 4px 12px;
+  &__create-pattern {
+    align-self: flex-end;
+    padding: 4px 12px;
+  }
 }
 </style>

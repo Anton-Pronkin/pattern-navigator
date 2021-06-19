@@ -24,7 +24,7 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
 body {
   margin: 0 0 0 12px;
   padding: 0 8px;
@@ -35,23 +35,23 @@ body {
 
 ::-webkit-scrollbar {
   width: 12px;
-}
 
-::-webkit-scrollbar-button {
-  background: transparent;
-}
+  &-button {
+    background: transparent;
+  }
 
-::-webkit-scrollbar-track-piece {
-  background: transparent;
-}
+  &-track-piece {
+    background: transparent;
+  }
 
-::-webkit-scrollbar-thumb {
-  border-radius: 6px;
-  background: #ebebeb;
-  cursor: pointer;
-}
+  &-thumb {
+    border-radius: 6px;
+    background: #ebebeb;
+    cursor: pointer;
 
-::-webkit-scrollbar-thumb:hover {
-  background: #dfdfdf;
+    &:hover {
+      background: #dfdfdf;
+    }
+  }
 }
 </style>

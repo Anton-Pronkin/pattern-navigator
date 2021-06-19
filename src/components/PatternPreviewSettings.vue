@@ -1,15 +1,15 @@
 <template>
   <div class="pattern-preview-settings">
-    <div class="patternPreviewSetting__name">RegExp:</div>
-    <div class="patternPreviewSetting__value">{{ pattern.regexp }}</div>
+    <div class="pattern-preview-settings__name">RegExp:</div>
+    <div class="pattern-preview-settings__value">{{ pattern.regexp }}</div>
 
-    <div class="patternPreviewSetting__name">Url:</div>
-    <div class="patternPreviewSetting__value">
+    <div class="pattern-preview-settings__name">Url:</div>
+    <div class="pattern-preview-settings__value">
       <highlighted-pattern :color-shift="index">{{ pattern.url }}</highlighted-pattern>
     </div>
 
-    <div class="patternPreviewSetting__name">Title:</div>
-    <div class="patternPreviewSetting__value">
+    <div class="pattern-preview-settings__name">Title:</div>
+    <div class="pattern-preview-settings__value">
       <highlighted-pattern :color-shift="index">{{ pattern.title }}</highlighted-pattern>
     </div>
   </div>
@@ -36,21 +36,21 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
 .pattern-preview-settings {
   display: grid;
   grid-template-columns: auto 1fr;
   gap: 4px 12px;
   font-size: 14px;
-}
 
-.patternPreviewSetting__name {
-  font-weight: bold;
-}
+  &__name {
+    font-weight: bold;
+  }
 
-.patternPreviewSetting__value {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  &__value {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
 }
 </style>

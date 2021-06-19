@@ -29,39 +29,39 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
 .pattern-preview-remove {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 8px;
   padding: 4px;
-}
 
-.pattern-preview-remove__message {
-  text-align: center;
-  font-size: 16px;
-}
+  &__message {
+    text-align: center;
+    font-size: 16px;
+  }
 
-.pattern-preview-remove__buttons {
-  display: flex;
-  gap: 8px;
-}
+  &__buttons {
+    display: flex;
+    gap: 8px;
+  }
 
-.pattern-preview-remove__button {
-  padding: 4px 16px;
-  border-radius: 4px;
-  border: 1px solid #dbdbdb;
-  cursor: pointer;
-  transition: 0.1s;
-  user-select: none;
-}
+  &__button {
+    padding: 4px 16px;
+    border-radius: 4px;
+    border: 1px solid #dbdbdb;
+    cursor: pointer;
+    transition: 0.1s;
+    user-select: none;
 
-.pattern-preview-remove__button:hover {
-  background-color: #ececec;
-}
+    &:hover {
+      background-color: #ececec;
+    }
 
-.pattern-preview-remove__button:active {
-  transform: scale(0.95);
+    &:active {
+      transform: scale(0.95);
+    }
+  }
 }
 </style>

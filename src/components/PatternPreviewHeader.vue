@@ -41,7 +41,7 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
 .pattern-preview-header {
   position: absolute;
   top: -12px;
@@ -49,92 +49,92 @@ export default {
   right: 0;
 
   display: grid;
-}
 
-.pattern-preview-header::before {
-  content: "";
-  display: block;
+  &::before {
+    content: "";
+    display: block;
 
-  position: absolute;
-  top: 12px;
-  left: 0;
-  right: 0;
-  height: 16px;
+    position: absolute;
+    top: 12px;
+    left: 0;
+    right: 0;
+    height: 16px;
 
-  border-bottom: 1px solid #d3d3d3;
-  background-color: #fafafa;
-  z-index: -1;
-  transition: 0.2s;
-}
+    border-bottom: 1px solid #d3d3d3;
+    background-color: #fafafa;
+    z-index: -1;
+    transition: 0.2s;
+  }
 
-.pattern-preview-header--hover::before {
-  background-color: #f0f0f0;
-}
+  &--hover::before {
+    background-color: #f0f0f0;
+  }
 
-.pattern-preview-header__badge {
-  grid-column-start: 1;
-  grid-row-start: 1;
+  &__badge {
+    grid-column-start: 1;
+    grid-row-start: 1;
 
-  border: 1px solid #d3d3d3;
-  border-radius: 8px;
+    border: 1px solid #d3d3d3;
+    border-radius: 8px;
 
-  color: #3a3a3a;
-  background-color: #ffffff;
-}
+    color: #3a3a3a;
+    background-color: #ffffff;
 
-.pattern-preview-header__badge--title {
-  justify-self: center;
-}
+    &--title {
+      justify-self: center;
+    }
 
-.pattern-preview-header__badge--buttons {
-  justify-self: right;
-  margin-right: 16px;
-}
+    &--buttons {
+      justify-self: right;
+      margin-right: 16px;
+    }
+  }
 
-.pattern-preview-header__title {
-  padding: 4px 24px;
-  font-size: 20px;
-  font-weight: bold;
+  &__title {
+    padding: 4px 24px;
+    font-size: 20px;
+    font-weight: bold;
 
-  max-width: 320px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
+    max-width: 320px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 
-.pattern-preview-header__buttons {
-  display: flex;
-  padding: 4px;
-  cursor: pointer;
-}
+  &__buttons {
+    display: flex;
+    padding: 4px;
+    cursor: pointer;
+  }
 
-.pattern-preview-header__button {
-  padding: 8px;
-  width: 16px;
-  height: 16px;
+  &__button {
+    padding: 8px;
+    width: 16px;
+    height: 16px;
 
-  user-select: none;
-  border-radius: 8px;
-  background: transparent no-repeat center center;
+    user-select: none;
+    border-radius: 8px;
+    background: transparent no-repeat center center;
 
-  opacity: 0.8;
-  transition: 0.1s;
-}
+    opacity: 0.8;
+    transition: 0.1s;
 
-.pattern-preview-header__button:hover {
-  background-color: #f1f1f1;
-  opacity: 1;
-}
+    &:hover {
+      background-color: #f1f1f1;
+      opacity: 1;
+    }
 
-.pattern-preview-header__button:active {
-  transform: scale(0.9);
-}
+    &:active {
+      transform: scale(0.9);
+    }
 
-.pattern-preview-header__button--edit {
-  background-image: url(../images/pen.png);
-}
+    &--edit {
+      background-image: url(../images/pen.png);
+    }
 
-.pattern-preview-header__button--remove {
-  background-image: url(../images/cross.png);
+    &--remove {
+      background-image: url(../images/cross.png);
+    }
+  }
 }
 </style>

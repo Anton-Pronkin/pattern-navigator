@@ -10,7 +10,7 @@
       <div class="edit-pattern__note">A regular expression that will be used as a pattern for finding system identifiers on the pages.</div>
 
       <label for="Url">Url: </label>
-      <input class="edit-pattern__input" v-model="url" ref="url" id="Url" type="text" @input="inputText"/>
+      <input class="edit-pattern__input" v-model="url" ref="url" id="Url" type="text" @input="inputText" />
       <div class="edit-pattern__note">
         The target URL for navigation when the pattern is matched. You can use <span class="edit-pattern__highlighted-note">$0</span> -
         <span class="edit-pattern__highlighted-note">$9</span> placeholders to put matched identifiers to URL. Use
@@ -18,7 +18,7 @@
       </div>
 
       <label for="title">Title: </label>
-      <input class="edit-pattern__input" v-model="title" ref="title" id="title" type="text" @input="inputText"/>
+      <input class="edit-pattern__input" v-model="title" ref="title" id="title" type="text" @input="inputText" />
       <div class="edit-pattern__note">
         The text of context menu item for the matched pattern. You can use <span class="edit-pattern__highlighted-note">$0</span> -
         <span class="edit-pattern__highlighted-note">$9</span> placeholders to put matched identifiers to title. Use
@@ -110,65 +110,65 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
 .edit-pattern {
   padding: 4px 0 8px;
-}
 
-.edit-pattern__fields {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  align-items: center;
-  gap: 8px;
-  margin: 8px 0;
-}
+  &__fields {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    gap: 8px;
+    margin: 8px 0;
+  }
 
-.edit-pattern__note {
-  grid-column: 2 / 3;
-  margin-bottom: 8px;
-  color: #5c5c5c;
-}
+  &__note {
+    grid-column: 2 / 3;
+    margin-bottom: 8px;
+    color: #5c5c5c;
+  }
 
-.edit-pattern__input {
-  padding: 8px;
-  border-radius: 4px;
-  border: 1px solid #c5c5c5;
-}
+  &__input {
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #c5c5c5;
 
-.edit-pattern__input:focus {
-  outline: none;
-  border-color: #8b8b8b;
-}
+    &:focus {
+      outline: none;
+      border-color: #8b8b8b;
+    }
+  }
 
-.edit-pattern__highlighted-note {
-  font-weight: bold;
-  color: #434fb9;
-}
+  &__highlighted-note {
+    font-weight: bold;
+    color: #434fb9;
+  }
 
-.edit-pattern__error-field:focus {
-  border-color: #c21010;
-}
+  &__error-field:focus {
+    border-color: #c21010;
+  }
 
-.edit-pattern__actions {
-  display: flex;
-  justify-content: flex-end;
-  gap: 8px;
-}
+  &__actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+  }
 
-.edit-pattern__action {
-  padding: 4px 16px;
-  border: 1px solid #bdbdbd;
-  border-radius: 4px;
-  user-select: none;
-  cursor: pointer;
-  transition: 0.1s;
-}
+  &__action {
+    padding: 4px 16px;
+    border: 1px solid #bdbdbd;
+    border-radius: 4px;
+    user-select: none;
+    cursor: pointer;
+    transition: 0.1s;
 
-.edit-pattern__action:hover {
-  background-color: #e9e9e9;
-}
+    &:hover {
+      background-color: #e9e9e9;
+    }
 
-.edit-pattern__action:active {
-  transform: scale(0.95);
+    &:active {
+      transform: scale(0.95);
+    }
+  }
 }
 </style>

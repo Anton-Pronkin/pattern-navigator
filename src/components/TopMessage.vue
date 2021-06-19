@@ -32,49 +32,51 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
 .top-message {
   display: flex;
   padding: 8px;
   border-radius: 8px;
-}
 
-.top-message--error {
-  background-color: #ffa6a654;
-}
+  &--error {
+    $error: & !global;
+    background-color: #ffa6a654;
+  }
 
-.top-message--success {
-  background-color: #89e0a354;
-}
+  &--success {
+    $success: & !global;
+    background-color: #89e0a354;
+  }
 
-.top-message__text {
-  flex-grow: 1;
-  padding: 4px 8px;
-  word-break: break-word;
-}
+  &__text {
+    flex-grow: 1;
+    padding: 4px 8px;
+    word-break: break-word;
+  }
 
-.top-message__close {
-  flex-shrink: 0;
-  padding: 8px;
+  &__close {
+    flex-shrink: 0;
+    padding: 8px;
 
-  width: 16px;
-  height: 16px;
-  border-radius: 8px;
+    width: 16px;
+    height: 16px;
+    border-radius: 8px;
 
-  cursor: pointer;
-  transition: 0.1s;
-  background: url(../images/cross.png) no-repeat center center;
-}
+    cursor: pointer;
+    transition: 0.1s;
+    background: url(../images/cross.png) no-repeat center center;
 
-.top-message--error .top-message__close:hover {
-  background-color: #eea0a0;
-}
+    &:active {
+      transform: scale(0.9);
+    }
+    
+    #{$error} &:hover {
+      background-color: #eea0a0;
+    }
 
-.top-message--success .top-message__close:hover {
-  background-color: #96d3aa;
-}
-
-.top-message__close:active {
-  transform: scale(0.9);
+    #{$success} &:hover {
+      background-color: #96d3aa;
+    }
+  }
 }
 </style>
