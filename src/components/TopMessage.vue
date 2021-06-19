@@ -33,6 +33,8 @@ export default {
 </script>
 
 <style lang="scss">
+@import "./styles/buttons/icon-button";
+
 .top-message {
   display: flex;
   padding: 8px;
@@ -56,20 +58,8 @@ export default {
 
   &__close {
     flex-shrink: 0;
-    padding: 8px;
+    @include icon-button(url(../images/cross.png));
 
-    width: 16px;
-    height: 16px;
-    border-radius: 8px;
-
-    cursor: pointer;
-    transition: 0.1s;
-    background: url(../images/cross.png) no-repeat center center;
-
-    &:active {
-      transform: scale(0.9);
-    }
-    
     #{$error} &:hover {
       background-color: #eea0a0;
     }

@@ -35,6 +35,8 @@ export default {
 </script>
 
 <style lang="scss">
+@import "./styles/buttons/common";
+
 .patterns-actions {
   display: flex;
   gap: 4px;
@@ -47,9 +49,7 @@ export default {
 
     border: 1px dotted #dbdbdb;
     border-radius: 8px;
-    cursor: pointer;
-    transition: 0.1s;
-    user-select: none;
+    @extend %common-button;
 
     &:hover {
       background-color: #f5f5f5;

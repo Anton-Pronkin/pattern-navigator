@@ -27,14 +27,15 @@
     </div>
 
     <div class="edit-pattern__actions">
-      <div class="edit-pattern__action" @click="save">Save</div>
-      <div class="edit-pattern__action" @click="cancel">Cancel</div>
+      <text-button @click="save">Save</text-button>
+      <text-button @click="cancel">Cancel</text-button>
     </div>
   </div>
 </template>
 
 <script>
 import PatternValidator from "../modules/patternValidator";
+import TextButton from "./TextButton.vue";
 
 export default {
   name: "EditPattern",
@@ -107,6 +108,9 @@ export default {
 
     this.$refs.name.focus();
   },
+  components: {
+    TextButton,
+  },
 };
 </script>
 
@@ -152,23 +156,6 @@ export default {
     display: flex;
     justify-content: flex-end;
     gap: 8px;
-  }
-
-  &__action {
-    padding: 4px 16px;
-    border: 1px solid #bdbdbd;
-    border-radius: 4px;
-    user-select: none;
-    cursor: pointer;
-    transition: 0.1s;
-
-    &:hover {
-      background-color: #e9e9e9;
-    }
-
-    &:active {
-      transform: scale(0.95);
-    }
   }
 }
 </style>

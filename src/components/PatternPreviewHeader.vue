@@ -42,6 +42,8 @@ export default {
 </script>
 
 <style lang="scss">
+@import "./styles/buttons/icon-button";
+
 .pattern-preview-header {
   position: absolute;
   top: -12px;
@@ -104,36 +106,15 @@ export default {
   &__buttons {
     display: flex;
     padding: 4px;
-    cursor: pointer;
   }
 
   &__button {
-    padding: 8px;
-    width: 16px;
-    height: 16px;
-
-    user-select: none;
-    border-radius: 8px;
-    background: transparent no-repeat center center;
-
-    opacity: 0.8;
-    transition: 0.1s;
-
-    &:hover {
-      background-color: #f1f1f1;
-      opacity: 1;
-    }
-
-    &:active {
-      transform: scale(0.9);
-    }
-
     &--edit {
-      background-image: url(../images/pen.png);
+      @include icon-button(url(../images/pen.png));
     }
 
     &--remove {
-      background-image: url(../images/cross.png);
+      @include icon-button(url(../images/cross.png));
     }
   }
 }

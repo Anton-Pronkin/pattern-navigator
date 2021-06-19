@@ -1,0 +1,21 @@
+@import "./common";
+
+@mixin icon-button($src: transparent) {
+  @extend %common-button;
+  padding: 8px;
+  width: 16px;
+  height: 16px;
+
+  border-radius: 8px;
+  background: $src no-repeat center center;
+  opacity: 0.8;
+
+  &:hover {
+    background-color: #f1f1f1;
+    opacity: 1;
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+}
