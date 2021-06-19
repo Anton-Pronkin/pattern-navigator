@@ -13,8 +13,8 @@ module.exports = {
             exclude: /node_modules/,
             loader: 'vue-loader'
         }, {
-            test: /\.css$/,
-            use: ["vue-style-loader", "css-loader"]
+            test: /\.s?css$/,
+            use: ["vue-style-loader", "css-loader", "sass-loader"]
         }, { 
             test: /\.(png|woff|woff2|eot|ttf|svg)$/, 
             loader: 'url-loader' 
