@@ -19,7 +19,7 @@ export default {
       elements.push(parts[i]);
 
       if (i < patternMatches?.length) {
-        const element = this.createPatternElement(patternMatches[i], i, createElement);
+        const element = this.createPatternElement(patternMatches[i], createElement);
         elements.push(element);
       }
     }
@@ -27,18 +27,19 @@ export default {
     return createElement("span", elements);
   },
   methods: {
-    createPatternElement(text, level, createElement) {
+    createPatternElement(text, createElement) {
       const props = {
         class: "highlighted-pattern__pattern",
         attrs: {
-          style: "color: " + this.getColorByLevel(level),
+          style: "color: " + this.getColor(text),
         },
       };
 
       return createElement("span", props, text);
     },
 
-    getColorByLevel(level) {
+    getColor(text) {
+      const level = +text[1];
       const colors = ["#6136e4", "#ff7c8e", "#1f9887", "#b97012", "#ed5050", "#0c7c44", "#738735", "#2eb1c7", "#74ec66", "#cb0432"];
       const defaultColor = "#484848";
 
