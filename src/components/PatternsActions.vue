@@ -37,6 +37,8 @@ export default {
 <style lang="scss">
 @import "./styles/buttons/common";
 
+$action-hover-selector: null;
+
 .patterns-actions {
   display: flex;
   gap: 4px;
@@ -53,7 +55,7 @@ export default {
 
     &:hover {
       background-color: #f5f5f5;
-      $actionHover: & !global;
+      $action-hover-selector: & !global;
     }
 
     &:active {
@@ -76,7 +78,7 @@ export default {
     opacity: 0.1;
     transition: 0.1s;
 
-    #{$actionHover} & {
+    #{$action-hover-selector} & {
       opacity: 0.6;
     }
 
@@ -105,7 +107,7 @@ export default {
     overflow-x: hidden;
     transition: 0.2s;
 
-    #{$actionHover} & {
+    #{$action-hover-selector} & {
       max-width: 150px;
       margin-left: 8px;
     }

@@ -35,18 +35,21 @@ export default {
 <style lang="scss">
 @import "./styles/buttons/icon-button";
 
+$error-selector: null;
+$success-selector: null;
+
 .top-message {
   display: flex;
   padding: 8px;
   border-radius: 8px;
 
   &--error {
-    $error: & !global;
+    $error-selector: & !global;
     background-color: #ffa6a654;
   }
 
   &--success {
-    $success: & !global;
+    $success-selector: & !global;
     background-color: #89e0a354;
   }
 
@@ -60,11 +63,11 @@ export default {
     flex-shrink: 0;
     @include icon-button(url(../images/cross.png));
 
-    #{$error} &:hover {
+    #{$error-selector} &:hover {
       background-color: #eea0a0;
     }
 
-    #{$success} &:hover {
+    #{$success-selector} &:hover {
       background-color: #96d3aa;
     }
   }
