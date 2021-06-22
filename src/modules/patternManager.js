@@ -7,7 +7,7 @@ export default class PatternManager {
     initializeGroupRegExps() {
         this.cachedGroupRegExps = [];
         for (let i = 0; i < 10; i++) {
-            const regexp = new RegExp("\\$" + i + "\\b", "g");
+            const regexp = new RegExp("\\$" + i + "(?!\\d)", "g");
             this.cachedGroupRegExps.push(regexp);
         }
     }

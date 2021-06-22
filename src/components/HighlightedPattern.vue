@@ -8,7 +8,7 @@ export default {
     },
   },
   render(createElement) {
-    const pattern = /\$[0-9]\b/g;
+    const pattern = /\$\d(?!\d)/g;
     const text = this.$slots.default[0].text;
 
     const parts = text.split(pattern);
