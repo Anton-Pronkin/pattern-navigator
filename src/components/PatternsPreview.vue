@@ -1,5 +1,7 @@
 <template>
   <div class="patterns-preview">
+    <div v-if="!patterns.length" class="patterns-preview__empty-message">You currently have no patterns. Please create a new one or import the existing configuration.</div>
+
     <pattern-preview-list
       v-if="patterns.length"
       :patterns="patterns"
@@ -58,6 +60,11 @@ export default {
   gap: 16px;
   padding: 12px 0;
 
+  &__empty-message {
+    text-align: center;
+    font-size: 15px;
+  }
+  
   &__create-pattern {
     align-self: flex-end;
     padding: 4px 12px;
